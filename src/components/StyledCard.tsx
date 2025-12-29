@@ -3,11 +3,14 @@ import type { Theme } from '@mui/material'
 
 const useStyles = makeStyles((theme: Theme) => ({
   card: {
-    padding: theme.spacing(3),
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.navy[400],
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[2],
     maxWidth: 400,
+    border: '1px solid',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '30px'
+    },
   },
   title: {
     fontSize: '1.25rem',
@@ -31,6 +34,7 @@ export function StyledCard({ title, content }: StyledCardProps) {
 
   return (
     <div className={classes.card}>
+      <h1>Demo</h1>
       <div className={classes.title}>{title}</div>
       <div className={classes.content}>{content}</div>
     </div>
