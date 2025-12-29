@@ -1,18 +1,11 @@
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'
-import { ThemeProvider as StylesThemeProvider } from '@mui/styles'
+import { ThemeProvider, CssBaseline } from '@mui/material'
 import { SampleButton, StyledCard } from './components'
-import './App.css'
-
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-})
+import './css/global.css'
+import theme from './theme'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <StylesThemeProvider theme={theme}>
         <CssBaseline />
         <div>
           API Layer Claude Code
@@ -22,7 +15,6 @@ function App() {
             content="This card is styled using makeStyles with theme access."
           />
         </div>
-      </StylesThemeProvider>
     </ThemeProvider>
   )
 }

@@ -1,0 +1,30 @@
+/** global css can be defined here **/
+
+@font-face {
+  font-family: "OpenSauceOne-Light";
+  src: local("OpenSauceOne-Light"), url("../font/OpenSauceOne-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "OpenSauceOne-Regular";
+  src: local("OpenSauceOne-Regular"), url("../font/OpenSauceOne-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "OpenSauceOne-Medium";
+  src: local("OpenSauceOne-Medium"), url("../font/OpenSauceOne-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "OpenSauceOne-SemiBold";
+  src: local("OpenSauceOne-SemiBold"), url("../font/OpenSauceOne-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "OpenSauceOne-Bold";
+  src: local("OpenSauceOne-Bold"), url("../font/OpenSauceOne-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "OpenSauceOne-ExtraBold";
+  src: local("OpenSauceOne-ExtraBold"), url("../font/OpenSauceOne-ExtraBold.ttf") format("truetype");
+}
+
+* {
+  font-family: OpenSauceOne-Regular;
+}
