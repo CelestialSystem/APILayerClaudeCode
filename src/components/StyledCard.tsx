@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles'
-import type { Theme } from '@mui/material'
+import { Typography, type Theme } from '@mui/material'
 
 const useStyles = makeStyles((theme: Theme) => ({
   card: {
@@ -34,9 +34,9 @@ export function StyledCard({ title, content }: StyledCardProps) {
 
   return (
     <div className={classes.card}>
-      <h1>Demo</h1>
-      <div className={classes.title}>{title}</div>
-      <div className={classes.content}>{content}</div>
+      <Typography variant='h1'>Big title</Typography>
+      <Typography variant='h2' className={classes.title}>{title}</Typography>
+      <Typography variant='h5' className={classes.content}>{content}</Typography>
     </div>
   )
 }

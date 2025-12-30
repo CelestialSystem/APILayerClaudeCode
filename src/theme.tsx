@@ -5,27 +5,27 @@ const theme = createTheme({
     fontSize: 14,
     h1: {
       fontSize: '32px',
-      fontWeight: 600,
+      fontFamily: 'OpenSauceOne-SemiBold',
     },
     h2: {
       fontSize: '20px',
-      fontWeight: 600,
+      fontFamily: 'OpenSauceOne-SemiBold',
     },
     h3: {
       fontSize: '16px',
-      fontWeight: 600,
+      fontFamily: 'OpenSauceOne-SemiBold',
     },
     h4: {
       fontSize: '14px',
-      fontWeight: 600,
+      fontFamily: 'OpenSauceOne-SemiBold',
     },
     h5: {
       fontSize: '14px',
-      fontWeight: 400,
+      fontFamily: 'OpenSauceOne-Regular',
     },
     h6: {
       fontSize: '12px',
-      fontWeight: 600,
+      fontFamily: 'OpenSauceOne-Regular',
     },
     body1: {
       fontSize: '12px',
