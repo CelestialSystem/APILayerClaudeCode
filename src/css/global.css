@@ -24,6 +24,14 @@
   font-family: "OpenSauceOne-ExtraBold";
   src: local("OpenSauceOne-ExtraBold"), url("../font/OpenSauceOne-ExtraBold.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Inter-Regular";
+  src: local("Inter-Regular"), url("../font/Inter-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter-SemiBold";
+  src: local("Inter-SemiBold"), url("../font/Inter-SemiBold.ttf") format("truetype");
+}
 
 * {
   font-family: OpenSauceOne-Regular;

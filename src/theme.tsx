@@ -1,6 +1,39 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  typography: {
+    fontSize: 14,
+    h1: {
+      fontSize: '32px',
+      fontWeight: 600,
+    },
+    h2: {
+      fontSize: '20px',
+      fontWeight: 600,
+    },
+    h3: {
+      fontSize: '16px',
+      fontWeight: 600,
+    },
+    h4: {
+      fontSize: '14px',
+      fontWeight: 600,
+    },
+    h5: {
+      fontSize: '14px',
+      fontWeight: 400,
+    },
+    h6: {
+      fontSize: '12px',
+      fontWeight: 600,
+    },
+    body1: {
+      fontSize: '12px',
+    },
+    body2: {
+      fontSize: '10px',
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,
