@@ -25,10 +25,11 @@ const theme = createTheme({
     },
     h6: {
       fontSize: '12px',
-      fontFamily: 'OpenSauceOne-Regular',
+      fontFamily: 'OpenSauceOne-Medium',
     },
     body1: {
       fontSize: '12px',
+      fontFamily: 'OpenSauceOne-Regular',
     },
     body2: {
       fontSize: '10px',
