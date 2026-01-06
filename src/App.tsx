@@ -1,20 +1,17 @@
 import { ThemeProvider, CssBaseline } from '@mui/material'
-import { SampleButton, StyledCard } from './components'
 import './css/global.css'
 import theme from './theme'
+import Login from './pages/login/Login'
+import ForgotPassword from './pages/forgotPassword/ForgotPassword'
+import ResetPassword from './pages/resetPassword/ResetPassword'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div>
-          API Layer Claude Code
-          <SampleButton label="Click me" onClick={() => console.log('clicked')} />
-          <StyledCard
-            title="makeStyles Test"
-            content="This card is styled using makeStyles with theme access."
-          />
-        </div>
+      <CssBaseline />
+      <Login />
+      <ForgotPassword />
+      <ResetPassword />
     </ThemeProvider>
   )
 }
