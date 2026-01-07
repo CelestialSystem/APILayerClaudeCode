@@ -1,55 +1,70 @@
 import { makeStyles } from "@mui/styles";
 import { type Theme } from '@mui/material';
 
-const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: '100vh',
         width: '100vw',
         padding: '24px 0',
         overflowY: 'auto',
         overflowX: 'hidden',
-        background: `radial-gradient(60% 50% at bottom center,rgba(92, 159, 249, 0.78) 0%, #EEF1F4 100%)`,
+        background: theme.palette.bg.main
     },
-    mainBox: {
-        width: '438px',
-        border: '1px solid #E4EBEF',
-        background: theme.palette.common.white,
-        color: theme.palette.navy[500],
+
+    card: {
+        margin: '56px auto 24px',
+        maxWidth: '668px',
         borderRadius: '8px',
+        backgroundColor: theme.palette.common.white,
         padding: '24px',
-        margin: '100px auto 0',
-    },
-    topBox: {
-        marginBottom: '32px',
-        '& h2': {
-            fontFamily: 'OpenSauceOne-Bold',
-            marginBottom: '8px',
-        },
-    },
-    bothPassBox: {
-        // border: '1px solid',
         display: 'flex',
         flexDirection: 'column',
-        gap: '16px'
+        gap: '24px',
+        border: '1px solid #E4EBEF'
     },
+
+    title: {
+        '&&': {
+            fontFamily: 'OpenSauceOne-Bold',
+            fontSize: '16px',
+            color: theme.palette.navy[500],
+            lineHeight: '120%'
+        }
+    },
+
+    formGrid: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+        columnGap: '16px',
+        rowGap: '24px',
+    },
+
+    fullWidth: {
+        gridColumn: '1 / -1',
+    },
+
     formControl: {
         width: '100%',
         display: 'flex',
         gap: '4px',
+
         '& label': {
             fontFamily: 'OpenSauceOne-Medium',
             fontSize: '13px',
-            color: theme.palette.navy[500],
+            color: `${theme.palette.navy[500]} !important`,
         },
+
         '& .MuiInputBase-formControl': {
             border: `1px solid ${theme.palette.navy[200]}`,
             borderRadius: '4px',
             height: '40px',
+
             '& input': {
                 fontFamily: 'OpenSauceOne-Regular',
                 fontSize: '14px',
-                padding: ' 0px 8px',
+                padding: '0px 8px',
                 color: theme.palette.navy[500],
+
                 '&::placeholder': {
                     color: theme.palette.navy[300],
                     opacity: 1,
@@ -60,20 +75,9 @@ const useStyles = makeStyles((theme: Theme) => ({
                     transition: 'background-color 9999s ease-in-out 0s',
                 },
             },
+
             '& fieldset': {
                 display: 'none',
-            },
-
-            '& .MuiInputAdornment-root button': {
-                padding: '0px',
-                '& svg': {
-                    width: '16px',
-                    height: '16px',
-                    color: theme.palette.navy[300],
-                },
-                '&:focus': {
-                    outline: 'none',
-                }
             },
             '&.Mui-focused': {
                 borderColor: theme.palette.blue[500],
@@ -81,29 +85,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
         '& .Mui-error': { border: '1px solid #FB3640 !important' }
     },
-    btnBox: {
-        marginTop: '24px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        '& h6': {
-            fontSize: '14px',
-            color: '#00000',
-            textAlign: 'center'
-        },
 
-    },
-    Link: {
-        '&.MuiLink-root': {
-            textDecoration: 'none',
-            fontSize: '14px',
-            color: theme.palette.blue[500],
-            fontFamily: 'OpenSauceOne-Bold',
-
-        },
-
-    },
-    submitBtn: {
+    continueButton: {
         '&.MuiButton-root': {
             height: '40px',
             borderRadius: '4px',
@@ -135,23 +118,5 @@ const useStyles = makeStyles((theme: Theme) => ({
             fontSize: '12px'
         }
     },
-    suggestion: {
-        marginTop: '4px',
-        '& h6': {
-            fontSize: '13px',
-            marginBottom: '4px'
-        },
-    },
-    suggestionMsg: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '6px',
-        '& .emptyCircle': {
-            border: '1px solid #9CA2AC',
-            height: '16px',
-            width: '16px',
-            borderRadius: '50%',
-        }
-    }
 }));
-export default useStyles;
+

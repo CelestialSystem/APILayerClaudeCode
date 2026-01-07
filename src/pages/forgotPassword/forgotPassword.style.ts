@@ -57,6 +57,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       '& fieldset': {
         display: 'none',
       },
+      '&.Mui-focused': {
+        borderColor: theme.palette.blue[500],
+      }
     }
   },
   btnBox: {
@@ -108,6 +111,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& a': {
       color: theme.palette.red[500],
       textDecorationColor: "red",
+    },
+    '& h5': {
+      fontSize: '12px'
     }
   },
 }));
