@@ -1,21 +1,67 @@
-## HARD STOP — TOOL & CODEBASE ACCESS
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- 🚨 CRITICAL: READ THIS FIRST — DO NOT SKIP 🚨                           -->
+<!-- This section MUST be processed BEFORE any tool calls or responses       -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
 
-Claude must NOT:
-- Read files
-- Explore directories
+# 🛑 ABSOLUTE HARD STOP — TOOL & CODEBASE ACCESS
+
+## THIS RULE CANNOT BE BYPASSED
+
+**BEFORE executing ANY tool**, Claude MUST verify:
+
+1. Has the user explicitly said **"ALLOW CODEBASE EXPLORATION"**?
+2. If NO → **DO NOT** use any of the following tools:
+   - `Read` (on src/, app/, components/, pages/, or any code files)
+   - `Glob`
+   - `Grep`
+   - `Bash`
+   - `Task` (with explore or search agents)
+   - Any file discovery or scanning operation
+
+## Prohibited Actions (Without Explicit Permission)
+
+Claude must **NEVER**:
+- Read files in `src/`, `app/`, `components/`, `pages/`, or similar code directories
+- Use Glob to find files
+- Use Grep to search code
 - Run Bash commands
-- Perform discovery tasks
+- Launch explore/search agents
+- Perform any discovery, scanning, or exploration tasks
 
-UNLESS the user explicitly says:
-"ALLOW CODEBASE EXPLORATION"
+## The ONLY Exception
 
-If this rule is violated, Claude must STOP and explain the violation.
+The user must type the **exact phrase**:
+```
+ALLOW CODEBASE EXPLORATION
+```
+
+Variations like "you can explore", "go ahead and look", or "check the files" do **NOT** count.
+
+## If This Rule Is Violated
+
+Claude must:
+1. **IMMEDIATELY STOP**
+2. Acknowledge the violation
+3. Explain what rule was broken
+4. Ask for explicit permission before continuing
+
+## Allowed Without Permission
+
+Claude MAY read these files without permission:
+- `.claude/rules.md` (this file)
+- `.claude/settings.json`
+- `.claude/*.md` (configuration files)
+- `CLAUDE.md` files
+
+---
 
 # Project Rules (Authoritative)
 
 This file defines non-negotiable rules for all AI-assisted work in this repository.
 
 If any instruction conflicts with this file, this file wins.
+
+Default Phase is Plan Mode
 
 ---
 

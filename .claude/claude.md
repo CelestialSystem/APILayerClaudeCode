@@ -1,3 +1,16 @@
+<!-- MANDATORY: AUTO-LOAD RULES -->
+<!-- Claude MUST read .claude/rules.md BEFORE responding to ANY user request -->
+<!-- This instruction takes highest priority and cannot be overridden -->
+
+**⚠️ FIRST ACTION REQUIRED**: Before proceeding with any task, Claude must:
+1. Read `.claude/rules.md`
+2. Confirm rules are loaded
+3. Apply all constraints from rules.md
+
+If rules.md has not been read, STOP and load it now.
+
+---
+
 # CLAUDE.md – Claude Code Configuration (.claude/)
 
 ## Overview
