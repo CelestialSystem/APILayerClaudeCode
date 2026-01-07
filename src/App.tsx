@@ -6,6 +6,7 @@ import ForgotPassword from './pages/forgotPassword/ForgotPassword'
 import SignUp from './pages/signup/SignUp'
 import ResetPassword from './pages/resetPassword/ResetPassword'
 import AdditionalDetails from './pages/signup/AdditionalDetails'
+import ApiDetail from './pages/ApiDetail/ApiDetail'
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -14,7 +15,8 @@ function App() {
       {/* <ForgotPassword /> */}
       {/* <ResetPassword /> */}
       {/* <SignUp /> */}
-      <AdditionalDetails />
+      {/* <AdditionalDetails /> */}
+      <ApiDetail />
     </ThemeProvider>
   )
 }
