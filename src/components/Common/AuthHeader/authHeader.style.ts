@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
         '& a': {
             color: theme.palette.blue[500],
-            fontFamily: "Inter-SemiBold",
+            fontFamily: 'Inter-SemiBold',
             fontSize: '14px'
         }
     },

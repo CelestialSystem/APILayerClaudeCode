@@ -10,14 +10,21 @@ const useStyles = makeStyles((theme: Theme) => ({
         overflowX: 'hidden',
         background: `radial-gradient(60% 50% at bottom center,rgba(92, 159, 249, 0.78) 0%, #EEF1F4 100%)`,
     },
-    loginBox: {
+    mainBox: {
+        display: 'flex',
+        gap: '24px',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        width: '78.4%',
+        margin: '91px auto 0px'
+    },
+    signupBox: {
         width: '438px',
         border: '1px solid #E4EBEF',
         background: theme.palette.common.white,
         color: theme.palette.navy[500],
         borderRadius: '8px',
         padding: '24px',
-        margin: '100px auto 0',
     },
     TopBoxBtns: {
         display: 'flex',
@@ -27,15 +34,15 @@ const useStyles = makeStyles((theme: Theme) => ({
             fontFamily: 'OpenSauceOne-Bold',
         }
     },
-    signInBtns: {
+    signUpBtns: {
         display: 'flex',
-        gap: '24px',
-        paddingRight: '15px',
+        gap: '16px',
+        paddingRight: '12px',
         '& button': {
             height: '40px',
             fontFamily: "Inter-SemiBold",
             fontSize: '14px',
-            width: 'calc((100% - 24px) / 2)',
+            width: 'calc((100% - 16px) / 2)',
             textTransform: 'none',
             borderRadius: '4px',
             outline: 'none',
@@ -57,9 +64,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 
     },
     form: {
-        '& .MuiFormControl-root:nth-child(1)': {
+        marginTop: '32px',
+        '& >.MuiFormControl-root': {
             marginBottom: '16px',
-        }
+        },
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px'
     },
     formControl: {
         width: '100%',
@@ -109,8 +120,10 @@ const useStyles = makeStyles((theme: Theme) => ({
             }
         }
     },
-    loginBtnBox: {
-        marginTop: '24px',
+    passField: {
+        marginTop: '16px'
+    },
+    signupBtnBox: {
         display: 'flex',
         flexDirection: 'column',
         gap: '16px',
@@ -119,8 +132,8 @@ const useStyles = makeStyles((theme: Theme) => ({
             color: '#00000',
             textAlign: 'center'
         },
-
     },
+
     Link: {
         '&.MuiLink-root': {
             textDecoration: 'none',
@@ -131,7 +144,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
 
     },
-    logInBtn: {
+    signupBtn: {
         '&.MuiButton-root': {
             height: '40px',
             borderRadius: '4px',
@@ -147,26 +160,173 @@ const useStyles = makeStyles((theme: Theme) => ({
             }
         },
     },
-    errorPlaceholderBox: {
-        minHeight: '32px'
+    suggestion: {
+        marginTop: '4px',
+        '& h6': {
+            fontSize: '13px',
+            marginBottom: '4px'
+        },
+    },
+    suggestionMsg: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        '& .emptyCircle': {
+            border: '1px solid #9CA2AC',
+            height: '16px',
+            width: '16px',
+            borderRadius: '50%',
+        }
     },
     errorRow: {
         display: 'flex',
-        alignItems: 'top',
+        alignItems: 'center',
         gap: '4px',
         color: theme.palette.red[500],
-        minHeight: '32px',
-        margin: '16px 0px',
-        borderRadius: '4px',
-        background: '#FEE1E2',
-        padding: '8px',
         '& svg': {
             fontSize: '16px'
         },
         '& a': {
             color: theme.palette.red[500],
             textDecorationColor: "red",
+        },
+        '& h5': {
+            fontSize: '12px'
         }
     },
+    checkboxText: {
+        alignItems: 'flex-start !important',
+        margin: '0px !important',
+        gap: '6px',
+        '& .MuiTypography-root': {
+            fontSize: '12px',
+            lineHeight: '113%'
+        },
+        '& a': { color: theme.palette.blue[500] },
+    },
+    rightPanel: {
+        position: 'relative',
+        flex: 1,
+        minWidth: 0,
+    },
+
+    pricingHeader: {
+        position: 'absolute',
+        top: '-35px'
+    },
+
+    pricingTitle: {
+        fontFamily: 'OpenSauceOne-Bold !important',
+        fontSize: '18px !important',
+        color: theme.palette.navy[500],
+    },
+
+    // Plan Cards
+    planCard: {
+        background: "#ffffff",
+        borderRadius: "12px",
+        boxShadow: '0 0 0 1px #E4EBEF',
+        marginBottom: "10px",
+        overflow: "hidden",
+        transition: "border 0.2s ease, boxShadow 0.2s ease",
+        cursor: "pointer",
+        border: '2px solid transparent'
+    },
+
+    planHeader: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "24px",
+    },
+    planCardSelected: {
+        borderColor: theme.palette.blue[500],
+        boxShadow: "0 0 0 1px #B0C9EF",
+        '& > div:nth-child(1)': {
+            paddingBottom: '16px'
+        }
+    },
+
+    planName: {
+        color: theme.palette.navy[500],
+        fontFamily: 'OpenSauceOne-Bold !important',
+        marginBottom: '4px !important'
+
+    },
+
+    planRequests: {
+        color: theme.palette.blue[500],
+        fontFamily: "Inter-SemiBold !important",
+        fontSize: '14px',
+
+    },
+
+    planPriceContainer: {
+        display: "flex",
+        alignItems: "baseline",
+        gap: "4px",
+        color: theme.palette.navy[500],
+    },
+
+    planPrice: {
+        fontSize: "23px !important",
+        fontFamily: 'OpenSauceOne-Bold !important',
+    },
+
+    planPriceUnit: {
+        fontSize: "23px !important",
+        fontFamily: 'OpenSauceOne-Bold !important',
+    },
+
+    // Expanded section
+    planFeatures: {
+        position: 'relative',
+        padding: '16px 24px 24px',
+        color: theme.palette.navy[500],
+
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'calc(100% - 48px)',
+            height: '1px',
+            backgroundColor: '#E4EBEF',
+        },
+    },
+
+    planSubtitle: {
+        marginBottom: "16px !important",
+        fontFamily: 'OpenSauceOne-Bold !important',
+        fontSize: '14px !important'
+    },
+
+    featuresGrid: {
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+    },
+
+    featureItem: {
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+    },
+
+    featureText: {
+        color: theme.palette.navy[500],
+        lineHeight: '120%'
+    },
+    comparePlansText: {
+        fontFamily: 'OpenSauceOne-Medium !important',
+        textAlign: 'end',
+        '& a': {
+            fontFamily: 'OpenSauceOne-SemiBold !important',
+            color: theme.palette.blue[500],
+            cursor: 'pointer'
+        }
+    },
+
+
 }));
 export default useStyles;
