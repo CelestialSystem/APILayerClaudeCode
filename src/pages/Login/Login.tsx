@@ -9,7 +9,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import useStyles from "./login.style";
-import AuthHeader from "../../components/Common/AuthHeader/AuthHeader";
+import AuthHeader from "../../components/common/authHeader/AuthHeader";
 
 function Login() {
     const classes = useStyles();
