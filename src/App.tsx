@@ -20,14 +20,11 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/order-summary" element={<OrderSummary />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/additional-details" element={<AdditionalDetails />} />
+          <Route path="/api-detail" element={<ApiDetail />} />
         </Routes>
       </BrowserRouter>
-      {/* <Login /> */}
-      {/* <ForgotPassword /> */}
-      {/* <ResetPassword /> */}
-      {/* <SignUp /> */}
-      {/* <AdditionalDetails /> */}
-      {/* <ApiDetail /> */}
     </ThemeProvider>
   )
 }
