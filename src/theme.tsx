@@ -8,7 +8,7 @@ const theme = createTheme({
       fontFamily: 'OpenSauceOne-SemiBold',
     },
     h2: {
-      fontSize: '20px',
+      fontSize: '18px',
       fontFamily: 'OpenSauceOne-SemiBold',
     },
     h3: {

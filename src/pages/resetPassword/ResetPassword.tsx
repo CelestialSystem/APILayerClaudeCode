@@ -12,7 +12,7 @@ import {
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import AuthHeader from "../../components/Common/AuthHeader/AuthHeader";
+import AuthHeader from "../../components/common/authHeader/AuthHeader";
 import CheckedIcon from '../../assets/circular_check.svg?react';
 import { useState } from "react";
 import useStyles from "./resetPassword.style";
