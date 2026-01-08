@@ -268,6 +268,7 @@ function SignUp() {
                     <Typography variant="h5" className={classes.comparePlansText}>
                         To see the side-by-side comparison,{" "}
                         <Link
+                            underline="none"
                             onClick={(e) => {
                                 e.preventDefault();
                                 setOpenComparePlan(true)

@@ -64,7 +64,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
                 fontSize: '14px',
                 padding: '0px 8px',
                 color: theme.palette.navy[500],
-
+                caretColor: theme.palette.blue[500],
                 '&::placeholder': {
                     color: theme.palette.navy[300],
                     opacity: 1,
