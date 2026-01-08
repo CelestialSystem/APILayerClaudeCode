@@ -1,8 +1,10 @@
-import { ThemeProvider, CssBaseline } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import theme from "./theme";
 import AppRouter from "./app/AppRouter";
 import "./css/global.css";
+import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider as StylesThemeProvider } from "@mui/styles";
 
 /**
  * Root component responsible for global providers
@@ -11,10 +13,12 @@ import "./css/global.css";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <BrowserRouter>
-        <AppRouter />
-      </BrowserRouter>
+      <StylesThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter>
+          <AppRouter />
+        </BrowserRouter>
+      </StylesThemeProvider>
     </ThemeProvider>
   );
 }
