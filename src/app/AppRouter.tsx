@@ -12,6 +12,7 @@ import ForgotPassword from "../pages/forgotPassword/ForgotPassword";
 import ApiDetail from "../pages/ApiDetail/ApiDetail";
 import AdditionalDetails from "../pages/signup/AdditionalDetails";
 import Login from "../pages/Login/Login";
+import OrderSummary from "../pages/OrderSummary/OrderSummary";
 
 /**
  * Central application router.
@@ -25,6 +26,7 @@ const AppRouter = () => {
       <Route element={<PublicLayout />}>
         {/* <Route path="/" element={<Home />} />*/}
         <Route path="/" element={<Navigate to="/api-detail" replace />} />
+        <Route path="/order-summary" element={<OrderSummary />} />
       </Route>
 
       {/* AUTH PAGES (logged OUT only) */}
@@ -33,7 +35,7 @@ const AppRouter = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/additional" element={<AdditionalDetails />} />
+          <Route path="/additional-details" element={<AdditionalDetails />} />
         </Route>
       </Route>
 

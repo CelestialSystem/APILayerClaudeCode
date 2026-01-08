@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import useStyles from "./forgotPassword.style";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-import AuthHeader from "../../components/Common/AuthHeader/AuthHeader";
-import BackdropPopup from "../../components/Common/BackdropPopup/BackdropPopup";
+import AuthHeader from "../../components/common/authHeader/AuthHeader";
+import BackdropPopup from "../../components/common/backdropPopup/BackdropPopup";
 import { POPUP_TYPE, POPUP_VALUES } from "../../helpers/constants";
 import { Link as RouterLink } from "react-router-dom";
 
