@@ -407,9 +407,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: 'relative',
   },
   notificationMenuContainer: {
-    position: 'absolute',
-    top: '48px',
-    right: '0',
+    position: 'fixed',
+    top: '64px',
+    right: '80px',
     backgroundColor: theme.palette.common.white,
     border: '1px solid #E4EBEF',
     borderRadius: '8px',
@@ -418,19 +418,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     maxHeight: '600px',
     display: 'flex',
     flexDirection: 'column',
-    zIndex: 1000,
+    zIndex: 1300,
     overflow: 'hidden',
-    [theme.breakpoints.down('sm')]: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      width: '100%',
-      maxHeight: '100%',
-      borderRadius: 0,
-      zIndex: 1300,
-    },
   },
   notificationHeader: {
     display: 'flex',
@@ -439,6 +428,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: '16px 24px',
     borderBottom: `1px solid #E4EBEF`,
     backgroundColor: theme.palette.common.white,
+    position: 'relative',
     [theme.breakpoints.down('sm')]: {
       padding: '16px',
     },
@@ -450,50 +440,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     flex: 1,
   },
   notificationHeaderTitle: {
-    fontSize: '18px',
-    fontFamily: 'OpenSauceOne-Medium',
     color: theme.palette.navy[500],
-    lineHeight: 1.2,
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '16px',
-    },
-  },
-  notificationHeaderActions: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-  },
-  notificationBadge: {
-    width: '32px',
-    height: '32px',
-    borderRadius: '50%',
-    backgroundColor: '#D62424',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  notificationBadgeText: {
-    fontSize: '14px',
-    fontFamily: 'Inter, sans-serif',
-    fontWeight: 400,
-    color: theme.palette.common.white,
   },
   notificationMoreButton: {
     cursor: 'pointer',
     color: theme.palette.navy[500],
     '&:hover': {
       opacity: 0.7,
-    },
-  },
-  notificationCloseButton: {
-    cursor: 'pointer',
-    color: theme.palette.navy[500],
-    display: 'none',
-    [theme.breakpoints.down('sm')]: {
-      display: 'flex',
     },
   },
   // Notification Content Area
@@ -540,31 +493,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
       backgroundColor: theme.palette.neutral[300],
     },
   },
-  notificationEmptyBellIcon: {
-    position: 'relative',
-    zIndex: 1,
-    color: theme.palette.navy[500],
-  },
-  notificationEmptyTitle: {
-    fontSize: '16px',
-    fontFamily: 'OpenSauceOne-Bold',
-    color: theme.palette.navy[500],
-    lineHeight: 1.2,
-    textAlign: 'center',
-  },
-  notificationEmptyDescription: {
-    fontSize: '14px',
-    fontFamily: 'OpenSauceOne-Regular',
-    color: theme.palette.navy[500],
-    lineHeight: 1.3,
-    textAlign: 'center',
-    maxWidth: '356px',
-  },
   notificationEmptyText: {
-    fontSize: '16px',
-    fontFamily: 'OpenSauceOne-Bold',
     color: theme.palette.navy[500],
-    lineHeight: 1.2,
     textAlign: 'center',
   },
   // Notification List
@@ -605,19 +535,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
   notificationItemIcon: {
     width: '40px',
     height: '40px',
-    borderRadius: '50%',
+    borderRadius: '8px',
     backgroundColor: theme.palette.common.white,
-    border: `1px solid ${theme.palette.neutral[300]}`,
+    border: `1px solid #E3EAEF`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
     overflow: 'hidden',
-  },
-  notificationItemIconImg: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
+    '& img': {
+      width: '23px',
+      height: '23px',
+    }
   },
   notificationItemContent: {
     flex: 1,
@@ -638,24 +567,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
     gap: '16px',
   },
   notificationItemTitle: {
-    fontSize: '16px',
-    fontFamily: 'OpenSauceOne-Bold',
     color: theme.palette.navy[500],
-    lineHeight: 1.2,
     flex: 1,
   },
   notificationItemTime: {
-    fontSize: '12px',
-    fontFamily: 'OpenSauceOne-Medium',
     color: theme.palette.navy[300],
-    lineHeight: 1.2,
     flexShrink: 0,
   },
   notificationItemDescription: {
-    fontSize: '14px',
-    fontFamily: 'OpenSauceOne-Regular',
     color: theme.palette.navy[500],
-    lineHeight: 1.3,
   },
   notificationItemAction: {
     display: 'flex',
@@ -667,29 +587,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   notificationItemActionText: {
-    fontSize: '14px',
-    fontFamily: 'Inter-SemiBold',
     color: theme.palette.blue[500],
-    lineHeight: 'normal',
-  },
-  notificationItemActionIcon: {
-    color: theme.palette.blue[500],
-  },
-  notificationViewUsage: {
-    fontSize: '14px',
-    fontFamily: 'Inter-SemiBold',
-    color: theme.palette.blue[500],
-    lineHeight: 'normal',
-    cursor: 'pointer',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
   },
   // Load More Button
   notificationLoadMore: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: '16px 24px',
     borderTop: `1px solid #E4EBEF`,
     cursor: 'pointer',
@@ -698,10 +599,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   notificationLoadMoreText: {
-    fontSize: '14px',
-    fontFamily: 'OpenSauceOne-Medium',
     color: theme.palette.blue[500],
-    lineHeight: 1.2,
   },
   notificationLoadMoreButton: {
     cursor: 'pointer',
@@ -709,90 +607,138 @@ export const useStyles = makeStyles((theme: Theme) => ({
       opacity: 0.8,
     },
   },
-  // More Options Menu
-  notificationMoreMenu: {
+  // Desktop More Menu (positioned relative to header)
+  notificationMoreMenuDesktop: {
     position: 'absolute',
-    top: '56px',
-    right: '24px',
+    top: '48px',
+    right: '0',
     backgroundColor: theme.palette.common.white,
     border: '1px solid #E4EBEF',
-    borderRadius: '8px',
-    boxShadow: '0px 4px 16px 0px rgba(0, 0, 0, 0.12)',
-    padding: '12px 16px',
+    borderRadius: '4px',
+    boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.16)',
+    padding: '8px',
     zIndex: 1001,
-    [theme.breakpoints.down('sm')]: {
-      position: 'fixed',
-      top: 'auto',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      borderRadius: '16px 16px 0 0',
-      padding: '16px',
-    },
-  },
-  notificationMoreMenuHandle: {
-    display: 'none',
-    [theme.breakpoints.down('sm')]: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginBottom: '16px',
-    },
-  },
-  notificationMoreMenuHandleBar: {
-    width: '40px',
-    height: '4px',
-    backgroundColor: theme.palette.neutral[300],
-    borderRadius: '2px',
+    minWidth: '185px',
   },
   notificationMoreMenuItem: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '16px',
-    padding: '8px 0',
+    gap: '8px',
+    height: '40px',
+    padding: '0 8px',
     cursor: 'pointer',
+    borderRadius: '4px',
     '&:hover': {
-      opacity: 0.8,
+      backgroundColor: theme.palette.neutral[100],
+    },
+    '&:focus': {
+      outline: `2px solid ${theme.palette.blue[500]}`,
+      outlineOffset: '2px',
     },
   },
-  notificationMoreMenuItemContent: {
+  notificationMoreMenuText: {
+    color: theme.palette.navy[500],
+  },
+  // Mobile Notification Container
+  mobileNotificationContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    backgroundColor: theme.palette.common.white,
+  },
+  // Mobile Notification Header
+  mobileNotificationHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '16px',
+    borderBottom: '1px solid #E4EBEF',
+    backgroundColor: theme.palette.common.white,
+  },
+  mobileNotificationTitle: {
+    color: theme.palette.navy[500],
+  },
+  mobileNotificationHeaderActions: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '24px',
+  },
+  mobileNotificationBadge: {
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    backgroundColor: '#D62424',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  mobileNotificationBadgeText: {
+    color: theme.palette.common.white,
+    textAlign: 'center',
+  },
+  // Mobile Notification List
+  mobileNotificationList: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '16px',
+    gap: '0',
+    flex: 1,
+    overflow: 'auto',
+  },
+  // Mobile Notification Item
+  mobileNotificationItem: {
+    display: 'flex',
+    gap: '16px',
+    paddingBottom: '16px',
+    paddingTop: '16px',
+    borderBottom: '1px solid #E4EBEF',
+    '&:first-child': {
+      paddingTop: 0,
+    },
+    '&:last-child': {
+      borderBottom: 'none',
+    },
+  },
+  mobileNotificationItemTitle: {
+    color: theme.palette.navy[500],
+    flex: 1,
+  },
+  // Mobile Action Sheet
+  mobileActionSheet: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
+    padding: '16px',
+  },
+  mobileActionSheetHandle: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+  mobileActionSheetHandleBar: {
+    width: '113px',
+    height: '6px',
+    borderRadius: '10px',
+    backgroundColor: '#D5D7DA',
+  },
+  mobileActionSheetItem: {
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
-  },
-  notificationMoreMenuItemIcon: {
-    color: theme.palette.navy[500],
-  },
-  notificationMoreMenuItemText: {
-    fontSize: '14px',
-    fontFamily: 'OpenSauceOne-Regular',
-    color: theme.palette.navy[500],
-    lineHeight: 1.2,
-  },
-  notificationMoreMenuText: {
-    fontSize: '14px',
-    fontFamily: 'OpenSauceOne-Regular',
-    color: theme.palette.navy[500],
-    lineHeight: 1.2,
-  },
-  notificationMoreMenuItemArrow: {
-    color: theme.palette.navy[500],
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
+    height: '40px',
+    padding: '0 8px',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.neutral[100],
+    },
+    '&:focus': {
+      outline: `2px solid ${theme.palette.blue[500]}`,
+      outlineOffset: '2px',
     },
   },
-  // Mobile overlay for bottom sheet
-  notificationOverlay: {
-    display: 'none',
-    [theme.breakpoints.down('sm')]: {
-      display: 'block',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 1000,
-    },
+  mobileActionSheetItemText: {
+    color: theme.palette.navy[500],
+    flex: 1,
   },
 }))

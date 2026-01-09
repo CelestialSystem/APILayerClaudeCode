@@ -12,25 +12,29 @@ import {
   Badge,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import CheckIcon from "@mui/icons-material/Check";
-import CloseIcon from "@mui/icons-material/Close";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import LogoutIcon from "@mui/icons-material/Logout";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import { ClickAwayListener, Fade } from "@mui/material";
-import { useStyles } from "./ApiDetailContent.style";
-import ProfileSettings from "../ProfileSettings/ProfileSettings";
-import { clearAuthToken } from "../../helpers/auth";
+  Drawer,
+  SwipeableDrawer,
+  Avatar,
+} from '@mui/material'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
+import CheckIcon from '@mui/icons-material/Check'
+import CloseIcon from '@mui/icons-material/Close'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import LogoutIcon from '@mui/icons-material/Logout'
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined'
+import DoneAllIcon from '@mui/icons-material/DoneAll'
+import { ClickAwayListener, Fade } from '@mui/material'
+import { useStyles } from './ApiDetailContent.style'
+import ProfileSettings from '../ProfileSettings/ProfileSettings'
 import { useNavigate } from "react-router-dom";
+import api_logo4 from '../../assets/api_logo4.svg';
 
 interface PlanFeature {
   name: string;
@@ -236,19 +240,21 @@ const ApiDetailContent = ({
   };
 
   // Notification menu handlers
-  const handleNotificationToggle = () => {
-    setNotificationMenuOpen((prev) => !prev);
-    setNotificationMoreMenuOpen(false);
-  };
+  const handleNotificationToggle = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    setNotificationMenuOpen((prev) => !prev)
+    setNotificationMoreMenuOpen(false)
+  }
 
   const handleNotificationMenuClose = () => {
     setNotificationMenuOpen(false);
     setNotificationMoreMenuOpen(false);
   };
 
-  const handleNotificationMoreMenuToggle = () => {
-    setNotificationMoreMenuOpen((prev) => !prev);
-  };
+  const handleNotificationMoreMenuToggle = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    setNotificationMoreMenuOpen((prev) => !prev)
+  }
 
   const handleMarkAllAsRead = () => {
     setNotificationMoreMenuOpen(false);
@@ -277,8 +283,7 @@ const ApiDetailContent = ({
           <IconButton aria-label="Shopping cart">
             <ShoppingCartOutlinedIcon sx={{ color: "navy.500" }} />
           </IconButton>
-          <ClickAwayListener onClickAway={handleNotificationMenuClose}>
-            <Box className={classes.notificationWrapper}>
+          <Box className={classes.notificationWrapper}>
               <IconButton
                 aria-label="Notifications"
                 onClick={handleNotificationToggle}
@@ -300,145 +305,8 @@ const ApiDetailContent = ({
                   <NotificationsOutlinedIcon sx={{ color: "navy.500" }} />
                 </Badge>
               </IconButton>
-              <Fade in={notificationMenuOpen}>
-                <Box className={classes.notificationMenuContainer}>
-                  {/* Header */}
-                  <Box className={classes.notificationHeader}>
-                    <Box className={classes.notificationHeaderLeft}>
-                      {isMobile && (
-                        <IconButton
-                          onClick={handleNotificationMenuClose}
-                          className={classes.notificationCloseButton}
-                          aria-label="Close notifications"
-                        >
-                          <CloseIcon sx={{ fontSize: "24px" }} />
-                        </IconButton>
-                      )}
-                      <Typography className={classes.notificationHeaderTitle}>
-                        Notifications
-                      </Typography>
-                      {isMobile && unreadCount > 0 && (
-                        <Box className={classes.notificationBadge}>
-                          <Typography className={classes.notificationBadgeText}>
-                            {unreadCount}
-                          </Typography>
-                        </Box>
-                      )}
-                    </Box>
-                    <Box
-                      className={classes.notificationMoreButton}
-                      onClick={handleNotificationMoreMenuToggle}
-                      role="button"
-                      tabIndex={0}
-                      aria-label="More options"
-                    >
-                      <MoreVertIcon sx={{ fontSize: "20px" }} />
-                    </Box>
-                    {/* More Menu */}
-                    {notificationMoreMenuOpen && (
-                      <Box className={classes.notificationMoreMenu}>
-                        <Box
-                          className={classes.notificationMoreMenuItem}
-                          onClick={handleMarkAllAsRead}
-                          role="menuitem"
-                          tabIndex={0}
-                        >
-                          <Typography
-                            className={classes.notificationMoreMenuText}
-                          >
-                            Mark all as read
-                          </Typography>
-                        </Box>
-                      </Box>
-                    )}
-                  </Box>
-
-                  {/* Content */}
-                  {notifications.length === 0 ? (
-                    /* Empty State */
-                    <Box className={classes.notificationEmptyState}>
-                      <Box className={classes.notificationEmptyIcon}>
-                        <NotificationsNoneOutlinedIcon
-                          sx={{ fontSize: "48px", color: "#98A2B3" }}
-                        />
-                      </Box>
-                      <Typography className={classes.notificationEmptyText}>
-                        You don't have any notifications yet
-                      </Typography>
-                    </Box>
-                  ) : (
-                    /* Notifications List */
-                    <>
-                      <Box className={classes.notificationList}>
-                        {notifications.map((notification) => (
-                          <Box
-                            key={notification.id}
-                            className={`${classes.notificationItem} ${
-                              !notification.isRead
-                                ? classes.notificationItemUnread
-                                : ""
-                            }`}
-                          >
-                            <Box className={classes.notificationItemIcon}>
-                              <NotificationsNoneOutlinedIcon
-                                sx={{ fontSize: "20px" }}
-                              />
-                            </Box>
-                            <Box className={classes.notificationItemContent}>
-                              <Box className={classes.notificationItemHeader}>
-                                <Typography
-                                  className={classes.notificationItemTitle}
-                                >
-                                  {notification.title}
-                                </Typography>
-                                <Typography
-                                  className={classes.notificationItemTime}
-                                >
-                                  {notification.time}
-                                </Typography>
-                              </Box>
-                              <Typography
-                                className={classes.notificationItemDescription}
-                              >
-                                {notification.description}
-                              </Typography>
-                              {notification.viewUsageLink && (
-                                <Typography
-                                  className={classes.notificationViewUsage}
-                                  onClick={() =>
-                                    handleViewUsage(notification.id)
-                                  }
-                                  role="link"
-                                  tabIndex={0}
-                                >
-                                  View usage
-                                </Typography>
-                              )}
-                            </Box>
-                          </Box>
-                        ))}
-                      </Box>
-                      {/* Load More Button */}
-                      <Box className={classes.notificationLoadMore}>
-                        <Box
-                          className={classes.notificationLoadMoreButton}
-                          onClick={handleLoadMore}
-                          role="button"
-                          tabIndex={0}
-                        >
-                          <Typography
-                            className={classes.notificationLoadMoreText}
-                          >
-                            Load more
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </>
-                  )}
-                </Box>
-              </Fade>
             </Box>
-          </ClickAwayListener>
+          
           <ClickAwayListener onClickAway={handleProfileMenuClose}>
             <Box className={classes.userAvatarWrapper}>
               <Box
@@ -825,6 +693,259 @@ const ApiDetailContent = ({
         userName={userName}
         userEmail={userEmail}
       />
+
+      {/* Notification Menu - Desktop */}
+      {!isMobile && notificationMenuOpen && (
+        <ClickAwayListener onClickAway={handleNotificationMenuClose}>
+          <Box className={classes.notificationMenuContainer}>
+              {/* Header */}
+              <Box className={classes.notificationHeader}>
+                <Box className={classes.notificationHeaderLeft}>
+                  <Typography variant="h2" className={classes.notificationHeaderTitle}>
+                    Notifications
+                  </Typography>
+                </Box>
+                <Box
+                  className={classes.notificationMoreButton}
+                  onClick={handleNotificationMoreMenuToggle}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="More options"
+                >
+                  <MoreVertIcon sx={{ fontSize: '20px' }} />
+                </Box>
+                {/* Desktop More Menu */}
+                {notificationMoreMenuOpen && (
+                  <Box className={classes.notificationMoreMenuDesktop}>
+                    <Box
+                      className={classes.notificationMoreMenuItem}
+                      onClick={handleMarkAllAsRead}
+                      role="menuitem"
+                      tabIndex={0}
+                    >
+                      <DoneAllIcon sx={{ fontSize: '20px', color: '#27344A' }} />
+                      <Typography variant="h5" className={classes.notificationMoreMenuText}>
+                        Mark all as read
+                      </Typography>
+                    </Box>
+                  </Box>
+                )}
+              </Box>
+
+              {/* Content */}
+              {notifications.length === 0 ? (
+                /* Empty State */
+                <Box className={classes.notificationEmptyState}>
+                  <Box className={classes.notificationEmptyIcon}>
+                    <NotificationsNoneOutlinedIcon
+                      sx={{ fontSize: '48px', color: '#98A2B3', position: 'relative', zIndex: 1 }}
+                    />
+                  </Box>
+                  <Typography variant="h3" className={classes.notificationEmptyText}>
+                    You don't have any notifications yet
+                  </Typography>
+                </Box>
+              ) : (
+                /* Notifications List */
+                <Box className={classes.notificationContent}>
+                  <Box className={classes.notificationList}>
+                    {notifications.map((notification, index) => (
+                      <Box
+                        key={notification.id}
+                        className={`${classes.notificationItem} ${!notification.isRead && index === 0 ? classes.notificationItemUnread : ''}`}
+                      >
+                        <Box className={classes.notificationItemIcon}>
+                          <Avatar alt="Curated API Image4" src={api_logo4} />
+                        </Box>
+                        <Box className={classes.notificationItemContent}>
+                          <Box className={classes.notificationItemHeader}>
+                            <Box className={classes.notificationItemTitleRow}>
+                              <Typography variant="h3" className={classes.notificationItemTitle}>
+                                {notification.title}
+                              </Typography>
+                              <Typography variant="h6" className={classes.notificationItemTime}>
+                                {notification.time}
+                              </Typography>
+                            </Box>
+                            <Typography variant="h5" className={classes.notificationItemDescription}>
+                              {notification.description}
+                            </Typography>
+                          </Box>
+                          {notification.viewUsageLink && (
+                            <Box
+                              className={classes.notificationItemAction}
+                              onClick={() => handleViewUsage(notification.id)}
+                              role="link"
+                              tabIndex={0}
+                            >
+                              <Typography variant="h4" className={classes.notificationItemActionText}>
+                                View usage
+                              </Typography>
+                              <ArrowForwardIcon sx={{ fontSize: '16px', color: '#0052CC' }} />
+                            </Box>
+                          )}
+                        </Box>
+                      </Box>
+                    ))}
+                  </Box>
+                  {/* Load More Button */}
+                  <Box className={classes.notificationLoadMore}>
+                    <Box
+                      className={classes.notificationLoadMoreButton}
+                      onClick={handleLoadMore}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <Typography variant="h4" className={classes.notificationLoadMoreText}>
+                        Load More
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              )}
+            </Box>
+        </ClickAwayListener>
+      )}
+
+      {/* Notification Menu - Mobile Full Screen Drawer */}
+      <Drawer
+        anchor="right"
+        open={isMobile && notificationMenuOpen}
+        onClose={handleNotificationMenuClose}
+        PaperProps={{
+          sx: {
+            width: '100%',
+            maxWidth: '100%',
+          },
+        }}
+      >
+        <Box className={classes.mobileNotificationContainer}>
+          {/* Mobile Header */}
+          <Box className={classes.mobileNotificationHeader}>
+            <Typography variant="h3" className={classes.mobileNotificationTitle}>
+              Notifications
+            </Typography>
+            <Box className={classes.mobileNotificationHeaderActions}>
+              {unreadCount > 0 && (
+                <Box className={classes.mobileNotificationBadge}>
+                  <Typography variant="h3" className={classes.mobileNotificationBadgeText}>
+                    {unreadCount}
+                  </Typography>
+                </Box>
+              )}
+              <IconButton
+                onClick={handleNotificationMoreMenuToggle}
+                aria-label="More options"
+                sx={{ padding: '4px' }}
+              >
+                <MoreVertIcon sx={{ fontSize: '24px', color: '#27344A' }} />
+              </IconButton>
+              <IconButton
+                onClick={handleNotificationMenuClose}
+                aria-label="Close notifications"
+                sx={{ padding: '4px' }}
+              >
+                <CloseIcon sx={{ fontSize: '24px', color: '#27344A' }} />
+              </IconButton>
+            </Box>
+          </Box>
+
+          {/* Mobile Content */}
+          {notifications.length === 0 ? (
+            <Box className={classes.notificationEmptyState}>
+              <Box className={classes.notificationEmptyIcon}>
+                <NotificationsNoneOutlinedIcon
+                  sx={{ fontSize: '48px', color: '#98A2B3', position: 'relative', zIndex: 1 }}
+                />
+              </Box>
+              <Typography variant="h3" className={classes.notificationEmptyText}>
+                You don't have any notifications yet
+              </Typography>
+            </Box>
+          ) : (
+            <Box className={classes.mobileNotificationList}>
+              {notifications.map((notification) => (
+                <Box
+                  key={notification.id}
+                  className={classes.mobileNotificationItem}
+                >
+                  <Box className={classes.notificationItemIcon}>
+                    {/* <NotificationsNoneOutlinedIcon sx={{ fontSize: '20px', color: '#27344A' }} /> */}
+                  </Box>
+                  <Box className={classes.notificationItemContent}>
+                    <Box className={classes.notificationItemHeader}>
+                      <Box className={classes.notificationItemTitleRow}>
+                        <Typography variant="h3" className={classes.mobileNotificationItemTitle}>
+                          {notification.title}
+                        </Typography>
+                        <Typography variant="h6" className={classes.notificationItemTime}>
+                          {notification.time}
+                        </Typography>
+                      </Box>
+                      <Typography variant="h5" className={classes.notificationItemDescription}>
+                        {notification.description}
+                      </Typography>
+                    </Box>
+                    {notification.viewUsageLink && (
+                      <Box
+                        className={classes.notificationItemAction}
+                        onClick={() => handleViewUsage(notification.id)}
+                        role="link"
+                        tabIndex={0}
+                      >
+                        <Typography variant="h4" className={classes.notificationItemActionText}>
+                          View usage
+                        </Typography>
+                        <ArrowForwardIcon sx={{ fontSize: '16px', color: '#0052CC' }} />
+                      </Box>
+                    )}
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          )}
+        </Box>
+      </Drawer>
+
+      {/* Mobile Bottom Sheet - More Options Menu */}
+      <SwipeableDrawer
+        anchor="bottom"
+        open={isMobile && notificationMoreMenuOpen}
+        onClose={() => setNotificationMoreMenuOpen(false)}
+        onOpen={() => setNotificationMoreMenuOpen(true)}
+        disableSwipeToOpen
+        sx={{
+          zIndex: 1400,
+        }}
+        PaperProps={{
+          sx: {
+            borderTopLeftRadius: '24px',
+            borderTopRightRadius: '24px',
+            backgroundColor: '#FDFDFE',
+          },
+        }}
+      >
+        <Box className={classes.mobileActionSheet}>
+          {/* Drag Handle */}
+          <Box className={classes.mobileActionSheetHandle}>
+            <Box className={classes.mobileActionSheetHandleBar} />
+          </Box>
+
+          {/* Mark All as Read Option */}
+          <Box
+            className={classes.mobileActionSheetItem}
+            onClick={handleMarkAllAsRead}
+            role="menuitem"
+            tabIndex={0}
+          >
+            <DoneAllIcon sx={{ fontSize: '20px', color: '#27344A' }} />
+            <Typography variant="h5" className={classes.mobileActionSheetItemText}>
+              Mark all as read
+            </Typography>
+            <ArrowForwardIcon sx={{ fontSize: '20px', color: '#27344A', marginLeft: 'auto' }} />
+          </Box>
+        </Box>
+      </SwipeableDrawer>
     </Box>
   );
 };
