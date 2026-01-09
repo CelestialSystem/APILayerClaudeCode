@@ -23,6 +23,7 @@ const POPUP_ICONS: Record<string, JSX.Element> = {
     [POPUP_TYPE.SUCCESS]: <TaskAltRoundedIcon />,
     [POPUP_TYPE.PASSWORD_CHANGED]: <LockOutlinedIcon />,
     [POPUP_TYPE.DISCOUNT]: <LocalOfferOutlinedIcon />,
+    [POPUP_TYPE.COUPON_CODE]: <LocalOfferOutlinedIcon />,
     [POPUP_TYPE.FAILED]: <ErrorOutlineOutlinedIcon />,
     [POPUP_TYPE.RESET_PASSWORD_EMAIL]: <EmailOutlinedIcon />,
     [POPUP_TYPE.EMAIL_VERIFICATION]: <EmailOutlinedIcon />,
@@ -33,6 +34,7 @@ const ICON_CLASS: Record<string, string> = {
     [POPUP_TYPE.RESET_PASSWORD_EMAIL]: 'blueRadial',
     [POPUP_TYPE.EMAIL_VERIFICATION]: 'blueRadial',
     [POPUP_TYPE.DISCOUNT]: 'redRadial',
+    [POPUP_TYPE.COUPON_CODE]: 'redRadial',
     [POPUP_TYPE.FAILED]: 'greyRadial',
 };
 const BUTTON_TEXT: Record<string, string> = {
@@ -41,6 +43,7 @@ const BUTTON_TEXT: Record<string, string> = {
     [POPUP_TYPE.RESET_PASSWORD_EMAIL]: 'Resend Email',
     [POPUP_TYPE.EMAIL_VERIFICATION]: 'Send Again',
     [POPUP_TYPE.DISCOUNT]: 'Copy Code',
+    [POPUP_TYPE.COUPON_CODE]: 'Copy Code',
     [POPUP_TYPE.FAILED]: 'Retry',
 };
 
@@ -69,11 +72,11 @@ function BackdropPopup({ open, values }: PopupProps) {
                     {description}
                 </Typography>
 
-                {type !== POPUP_TYPE.DISCOUNT &&
+                {type !== POPUP_TYPE.DISCOUNT && type !== POPUP_TYPE.COUPON_CODE &&
                     <Button disableRipple className={`${classes.actionBtn} ${type === POPUP_TYPE.RESET_PASSWORD_EMAIL && 'outlineBtn'}`}>
                         {BUTTON_TEXT[type]}
                     </Button>}
-                {type === POPUP_TYPE.DISCOUNT &&
+                {(type === POPUP_TYPE.DISCOUNT || type === POPUP_TYPE.COUPON_CODE) &&
                     <Box className={classes.discountBox}>
                         <Typography component="span"> {values.couponCode} </Typography>
                         <Button disableRipple className={classes.actionBtn}>{BUTTON_TEXT[type]}</Button>

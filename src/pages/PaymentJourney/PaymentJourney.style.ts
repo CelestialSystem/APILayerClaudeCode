@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { type Theme } from "@mui/material";
+import { Padding } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -210,6 +211,46 @@ const useStyles = makeStyles((theme: Theme) => ({
   totalPrice: {
     color: theme.palette.navy[500],
   },
+  formControl: {
+    width: '100%',
+    display: 'flex',
+    gap: '4px',
+    '& label': {
+        fontFamily: 'OpenSauceOne-Medium',
+        fontSize: '13px',
+        color: `${theme.palette.navy[500]} !important`,
+    },
+    '& .MuiInputBase-formControl': {
+        border: `1px solid ${theme.palette.navy[200]}`,
+        borderRadius: '4px',
+        height: '40px',
+
+        '& input': {
+            fontFamily: 'OpenSauceOne-Regular',
+            fontSize: '14px',
+            padding: '0px 8px',
+            color: theme.palette.navy[500],
+            caretColor: theme.palette.blue[500],
+            '&::placeholder': {
+                color: theme.palette.navy[300],
+                opacity: 1,
+            },
+            '&:-webkit-autofill': {
+                WebkitBoxShadow: '0 0 0 100px #fff inset',
+                WebkitTextFillColor: theme.palette.navy[500],
+                transition: 'background-color 9999s ease-in-out 0s',
+            },
+        },
+
+        '& fieldset': {
+            display: 'none',
+        },
+        '&.Mui-focused': {
+            borderColor: theme.palette.blue[500],
+        }
+    },
+    '& .Mui-error': { border: '1px solid #FB3640 !important' }
+},
   continueButton: {
     "&.MuiButton-root": {
       height: "40px",
@@ -418,6 +459,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       textTransform: "none",
       backgroundColor: "#A1C4F1",
       color: "#D9E7F7",
+      padding: '8px 16px',
       "&:hover": {
         backgroundColor: "#A1C4F1",
       },
@@ -626,6 +668,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   addressMenuButton: {
     padding: '4px',
     color: '#6B7280',
+    outline: "none",
+    "&:focus": {
+      outline: "none",
+    },
+    "&:focus-visible": {
+      outline: "none",
+      boxShadow: "none",
+    },
   },
   addressMenu: {
     '& .MuiPaper-root': {
@@ -743,6 +793,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   paymentMenuButton: {
     padding: '4px',
     color: '#6B7280',
+    outline: "none",
+    "&:focus": {
+      outline: "none",
+    },
+    "&:focus-visible": {
+      outline: "none",
+      boxShadow: "none",
+    },
   },
   paymentMenu: {
     '& .MuiPaper-root': {
@@ -799,6 +857,82 @@ const useStyles = makeStyles((theme: Theme) => ({
   couponErrorText: {
     color: '#E74C5E',
     fontSize: '14px',
+  },
+  // Empty Cart Tab Styles
+  emptyCartContainer: {
+    flex: 1,
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #E4EBEF',
+    borderRadius: '8px',
+    padding: '16px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '521px',
+  },
+  emptyCartContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '24px',
+    maxWidth: '376px',
+  },
+  emptyCartIconWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '11px',
+    position: 'relative',
+    width: '168px',
+    height: '168px',
+  },
+  emptyCartOuterRing: {
+    position: 'absolute',
+    width: '168px',
+    height: '168px',
+    borderRadius: '50%',
+    border: '1px solid rgba(39, 52, 74, 0.06)',
+  },
+  emptyCartMiddleRing: {
+    position: 'absolute',
+    width: '146px',
+    height: '146px',
+    borderRadius: '50%',
+    background: 'radial-gradient(circle at center, #FAFBFC 0%, #E8EAED 100%)',
+    boxShadow: 'inset 0 0 0 1px rgba(39, 52, 74, 0.04)',
+  },
+  emptyCartInnerCircle: {
+    position: 'absolute',
+    width: '116px',
+    height: '116px',
+    borderRadius: '50%',
+    border: '1px solid rgba(39, 52, 74, 0.06)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emptyCartIcon: {
+    fontSize: '40px',
+    color: theme.palette.navy[500],
+    position: 'relative',
+    zIndex: 1,
+  },
+  emptyCartTextContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '8px',
+    textAlign: 'center',
+  },
+  emptyCartTitle: {
+    color: theme.palette.navy[500],
+    fontFamily: 'OpenSauceOne-Bold',
+    fontSize: '16px !important',
+  },
+  emptyCartDescription: {
+    color: theme.palette.navy[500],
+    fontSize: '14px !important',
+    lineHeight: '1.3 !important',
   },
 }));
 

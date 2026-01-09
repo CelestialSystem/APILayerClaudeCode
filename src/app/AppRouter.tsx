@@ -12,7 +12,7 @@ import ForgotPassword from "../pages/forgotPassword/ForgotPassword";
 import ApiDetail from "../pages/ApiDetail/ApiDetail";
 import AdditionalDetails from "../pages/signup/AdditionalDetails";
 import Login from "../pages/login/Login";
-import OrderSummary from "../pages/OrderSummary/OrderSummary";
+import OrderSummary from "../pages/PaymentJourney/PaymentJourney";
 
 /**
  * Central application router.
