@@ -4,7 +4,10 @@ export const POPUP_TYPE = {
     PASSWORD_CHANGED: 'password_changed',
     EMAIL_VERIFICATION: 'email_verification',
     DISCOUNT: 'discount',
+    COUPON_CODE: 'coupon_code',
     FAILED: 'failed',
+    PAYMENT_PLAN: 'payment_done',
+    PAYMENT_DONE_MULTI: 'payment_plan_multi'
 }
 
 export const POPUP_VALUES = {
@@ -31,6 +34,21 @@ export const POPUP_VALUES = {
   DISCOUNT_CODE: {
     title: 'Get 20% off on IPstack',
     description: 'Use the discount code below to unlock the discount on IPstack.',
+  },
+
+  COUPON_CODE: {
+    title: 'Get 20% off on IPstack',
+    description: 'Use the discount code below to unlock the discount on IPstack.',
+  },
+
+  PAYMENT_PLAN: {
+    title: 'Yay! You’re subscribed to IPstack.',
+    description: 'Your payment has been successfully completed. You can start using the APIs.',
+  },
+
+  PAYMENT_DONE_MULTI: {
+    title: 'Yay! You’re subscribed to IPstack & Currencylayer',
+    description: 'Your payment has been successfully completed. You can start using the APIs.',
   },
 
   PAYMENT_FAILED: {
