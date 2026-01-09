@@ -199,3 +199,166 @@ If Claude detects a conflict or violation:
 - Stop
 - Explain the issue
 - Ask for guidance before proceeding
+
+---
+
+## 13. AI Compliance & Commit Standards
+
+### Commit Tagging
+- All AI-assisted commits MUST use tag: `ai-cc`
+- Commit format:
+  ```
+  ai-cc Human edits: [description]
+  Linked to: [JIRA-XXX]
+  
+  Co-Authored-By: Claude Sonnet 4.5 (1M context) <noreply@anthropic.com>
+  ```
+
+### Human Review Requirements
+- Material editing is MANDATORY before commit
+- Security review is REQUIRED for all code
+- Claude is an assistant, NOT an author of record
+- Claude must NOT commit, push, or merge code directly
+
+### Never Submit to AI
+Claude must NEVER process or have access to:
+- API keys, auth tokens, credentials
+- User PII (email, full name, phone, address)
+- Session cookies, JWT tokens
+- Production URLs, IPs, hostnames
+- `.env` file contents
+- Real user data from production
+- Proprietary algorithms (must be generalized)
+
+---
+
+## 14. Security & PII Protection
+
+### PII Protection Rules
+
+**Never Log These Fields:**
+- `email`
+- `full_name`
+- `phone`
+- `address`
+- `password`
+- `token`
+- `session_id`
+- `credit_card`
+- `ssn`
+- `api_key`
+
+**Always Mask in Logs/Output:**
+- Email → `e***@example.com`
+- Phone → `***-***-1234`
+- Token → `tok_***`
+- IP Address → `***.***.***.***`
+
+### Input Validation
+- Validate all user inputs at system boundaries
+- Sanitize data before rendering (XSS prevention)
+- Use parameterized queries (SQL injection prevention)
+- Implement rate limiting on API endpoints
+
+### Authentication & Authorization
+- Never hardcode credentials
+- Use environment variables for secrets
+- Implement proper session management
+- Enforce least-privilege access control
+
+### Encryption Requirements
+- HTTPS only for all API communication
+- Encrypt sensitive data at rest
+- Use secure token generation (crypto.randomBytes)
+- Implement proper password hashing (bcrypt, scrypt)
+
+---
+
+## 15. Error Handling & Logging
+
+### Error Messages
+- Never expose stack traces to users
+- Never log sensitive data in error messages
+- Provide user-friendly error messages
+- Log detailed errors server-side only
+
+### Logging Standards
+- Log levels: ERROR, WARN, INFO, DEBUG
+- Include request IDs for traceability
+- Never log passwords, tokens, or PII
+- Use structured logging (JSON format)
+
+---
+
+## 16. Testing Requirements
+
+### Minimum Coverage
+- Unit tests: 80% coverage minimum
+- All public APIs must have tests
+- All critical paths must have tests
+- Edge cases and error scenarios must be tested
+
+### Test Standards
+- Use React Testing Library for component tests
+- Mock external dependencies
+- Test accessibility with jest-axe
+- Test user interactions, not implementation details
+
+---
+
+## 17. Code Review Checklist
+
+When Claude reviews code, must check:
+
+**Must-Fix Issues:**
+- Security vulnerabilities
+- PII exposure
+- Use of `any` type
+- Missing accessibility features
+- Performance bottlenecks
+- Rule violations from this file
+
+**Nice-to-Have:**
+- Code readability improvements
+- Better naming conventions
+- Additional test coverage
+- Documentation enhancements
+
+---
+
+## 18. Emergency Stop Conditions
+
+Claude must STOP immediately and ask for guidance if:
+
+1. User requests to commit secrets or PII
+2. User asks to bypass security measures
+3. User requests destructive git operations (force push to main)
+4. Conflicting instructions from multiple sources
+5. Unclear requirements that could lead to security issues
+6. Request to disable authentication or authorization
+7. Request to expose sensitive endpoints publicly
+
+---
+
+## Final Note
+
+These rules are NON-NEGOTIABLE.
+
+If a user instruction conflicts with these rules, these rules WIN.
+
+Claude must politely explain the conflict and suggest alternatives that comply with these rules.
+
+---
+
+## 19. Model Requirement
+
+**MANDATORY:** Always use **Claude Sonnet 4.5** model for this project.
+
+- Model ID: `claude-sonnet-4-5` or latest Sonnet 4.5 variant
+- Do NOT use other models (Opus, Haiku, older Sonnet versions)
+- This ensures consistency in code quality and rule adherence
+- Sonnet 4.5 has the context window and capabilities needed for this project
+
+If a different model is being used, stop and notify the user to switch to Sonnet 4.5.
+
+---

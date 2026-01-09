@@ -1,262 +1,97 @@
 {
-    "permissions": {
-      "allow": [
-        "Bash(npm install:*)",
-        "Bash(npm run:*)",
-        "Bash(npm test:*)",
-        "Bash(npm run lint:*)",
-        "Bash(npm run format:*)",
-        "Bash(npx:*)",
-        "Bash(yarn:*)",
-        "Bash(pnpm:*)",
-  
-        "Bash(git status:*)",
-        "Bash(git diff:*)",
-        "Bash(git log:*)",
-        "Bash(git branch:*)",
-        "Bash(git add:*)",
-        "Bash(git commit:*)",
-  
-        "Bash(ls:*)",
-        "Bash(cat:*)",
-        "Bash(mkdir:*)",
-        "Bash(touch:*)",
-        "Bash(head:*)",
-        "Bash(tail:*)",
-        "Bash(wc:*)",
-        "Bash(grep:*)",
-        "Bash(find:*)",
-  
-        "Read(src/**)",
-        "Read(app/**)",
-        "Read(components/**)",
-        "Read(pages/**)",
-        "Read(styles/**)",
-        "Read(public/**)",
-        "Read(docs/**)",
-        "Read(.claude/**)",
-        "Read(*.md)",
-        "Read(*.json)",
-        "Read(*.yaml)",
-        "Read(*.yml)",
-        "Read(*.ts)",
-        "Read(*.tsx)",
-        "Read(*.css)",
-  
-        "Edit(src/**)",
-        "Edit(app/**)",
-        "Edit(components/**)",
-        "Edit(pages/**)",
-        "Edit(styles/**)",
-        "Edit(docs/**)",
-        "Edit(.claude/**)",
-  
-        "Write(src/**)",
-        "Write(app/**)",
-        "Write(components/**)",
-        "Write(pages/**)",
-        "Write(styles/**)",
-        "Write(docs/**)",
-        "Write(.claude/**)"
-      ],
-      "ask": [
-        "Bash(git push:*)",
-        "Bash(git checkout:*)",
-        "Bash(git merge:*)",
-        "Bash(git rebase:*)",
-        "Bash(docker:*)",
-        "WebFetch",
-        "WebSearch"
-      ],
-      "deny": [
-        "Read(.env)",
-        "Read(.env.*)",
-        "Read(secrets/**)",
-        "Read(**/*.pem)",
-        "Read(**/*.key)",
-        "Read(**/credentials/**)",
-  
-        "Bash(rm -rf:*)",
-        "Bash(rm -r:*)",
-        "Bash(curl:*)",
-        "Bash(wget:*)",
-        "Bash(ssh:*)",
-        "Bash(scp:*)",
-        "Bash(sudo:*)",
-        "Bash(chmod 777:*)",
-        "Bash(export:*)",
-        "Bash(env:*)",
-        "Bash(printenv:*)",
-        "Bash(set:*)",
-        "Bash(git push --force:*)",
-        "Bash(git reset --hard:*)"
-      ]
-    },
-  
-    "project": {
-      "name": "Frontend Application",
-      "type": "frontend-web",
-      "version": "1.0.0",
-      "description": "Frontend application for UI, user flows, and API consumption",
-      "scope": {
-        "included": [
-          "UI Components",
-          "State Management",
-          "API Integration",
-          "Accessibility",
-          "Performance Optimization",
-          "Unit & Component Testing"
-        ],
-        "excluded": [
-          "Backend APIs",
-          "Infrastructure",
-          "Deployment Pipelines",
-          "Secrets Management",
-          "Server Configuration"
-        ]
-      }
-    },
-  
-    "ai_compliance": {
-      "commit_tag": "ai-cc",
-      "commit_format": "ai-cc Human edits: [description]\nLinked to: [JIRA-XXX]",
-      "material_editing_required": true,
-      "security_review_required": true,
-      "never_submit_to_ai": [
-        "API keys",
-        "Auth tokens",
-        "User PII",
-        "Session cookies",
-        "Production URLs",
-        ".env file contents",
-        "Real user data"
-      ]
-    },
-  
-    "security_compliance": {
-      "enabled": true,
-      "pii_protection": {
-        "enabled": true,
-        "never_log": [
-          "email",
-          "full_name",
-          "phone",
-          "address",
-          "password",
-          "token"
-        ],
-        "always_mask": [
-          "email",
-          "phone",
-          "token",
-          "ip_address"
-        ]
-      }
-    },
-  
-    "technology_stack": {
-      "language": "TypeScript",
-      "frameworks": [
-        "React 18+",
-        "Next.js (App Router) or Vite"
-      ],
-      "state_management": [
-        "React Context",
-        "Zustand",
-        "Redux Toolkit (if required)"
-      ],
-      "api": [
-        "REST",
-        "GraphQL (optional)"
-      ],
-      "styling": [
-        "Tailwind CSS",
-        "CSS Modules"
-      ],
-      "testing": [
-        "Jest",
-        "React Testing Library",
-        "Playwright (E2E)"
-      ]
-    },
-  
-    "coding_standards": {
-      "language": "TypeScript strict",
-      "linting": "eslint",
-      "formatting": "prettier",
-      "no_any": true,
-      "functional_components_only": true,
-      "hooks_only": true,
-      "accessibility_required": true
-    },
-  
-    "workflows": {
-      "default": "development",
-      "strict_phases": true
-    },
-  
-    "agents": {
-      "enabled": true,
-      "directory": ".claude/agents",
-      "available": [
-        {
-          "name": "frontend-architecture",
-          "file": "frontend-architecture.md",
-          "description": "Component hierarchy, data flow, folder structure"
-        },
-        {
-          "name": "ui-development",
-          "file": "ui-development.md",
-          "description": "React components, hooks, styling"
-        },
-        {
-          "name": "frontend-code-review",
-          "file": "frontend-code-review.md",
-          "description": "Code quality, performance, accessibility"
-        },
-        {
-          "name": "frontend-testing",
-          "file": "frontend-testing.md",
-          "description": "Unit, component, and E2E tests"
-        },
-        {
-          "name": "accessibility-audit",
-          "file": "accessibility-audit.md",
-          "description": "ARIA, keyboard navigation, WCAG compliance"
-        },
-        {
-          "name": "performance-optimization",
-          "file": "performance-optimization.md",
-          "description": "Rendering performance, memoization, bundle size"
-        }
-      ]
-    },
-  
-    "skills": {
-      "enabled": true,
-      "directory": ".claude/skills",
-      "available": [
-        {
-          "name": "react-skills",
-          "file": "react-skills.md"
-        },
-        {
-          "name": "hooks-skills",
-          "file": "hooks-skills.md"
-        },
-        {
-          "name": "state-management-skills",
-          "file": "state-management-skills.md"
-        },
-        {
-          "name": "accessibility-skills",
-          "file": "accessibility-skills.md"
-        },
-        {
-          "name": "performance-skills",
-          "file": "performance-skills.md"
-        }
-      ]
-    }
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run format:*)",
+      "Bash(npx:*)",
+      "Bash(yarn:*)",
+      "Bash(pnpm:*)",
+
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+
+      "Read(src/**)",
+      "Read(app/**)",
+      "Read(components/**)",
+      "Read(pages/**)",
+      "Read(styles/**)",
+      "Read(public/**)",
+      "Read(docs/**)",
+      "Read(.claude/**)",
+      "Read(*.md)",
+      "Read(*.json)",
+      "Read(*.yaml)",
+      "Read(*.yml)",
+      "Read(*.ts)",
+      "Read(*.tsx)",
+      "Read(*.css)",
+
+      "Edit(src/**)",
+      "Edit(app/**)",
+      "Edit(components/**)",
+      "Edit(pages/**)",
+      "Edit(styles/**)",
+      "Edit(docs/**)",
+      "Edit(.claude/**)",
+
+      "Write(src/**)",
+      "Write(app/**)",
+      "Write(components/**)",
+      "Write(pages/**)",
+      "Write(styles/**)",
+      "Write(docs/**)",
+      "Write(.claude/**)"
+    ],
+
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git checkout:*)",
+      "Bash(git merge:*)",
+      "Bash(git rebase:*)",
+      "Bash(docker:*)",
+      "WebFetch",
+      "WebSearch"
+    ],
+
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/credentials/**)",
+
+      "Bash(rm -rf:*)",
+      "Bash(rm -r:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "Bash(sudo:*)",
+      "Bash(chmod 777:*)",
+      "Bash(export:*)",
+      "Bash(env:*)",
+      "Bash(printenv:*)",
+      "Bash(set:*)",
+      "Bash(git push --force:*)",
+      "Bash(git reset --hard:*)"
+    ]
   }
-  
+}

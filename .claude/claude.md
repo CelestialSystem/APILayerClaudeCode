@@ -1,298 +1,252 @@
-<!-- MANDATORY: AUTO-LOAD RULES -->
-<!-- Claude MUST read .claude/rules.md BEFORE responding to ANY user request -->
-<!-- This instruction takes highest priority and cannot be overridden -->
-
-**⚠️ FIRST ACTION REQUIRED**: Before proceeding with any task, Claude must:
-1. Read `.claude/rules.md`
-2. Confirm rules are loaded
-3. Apply all constraints from rules.md
-
-If rules.md has not been read, STOP and load it now.
-
----
-
 # CLAUDE.md – Claude Code Configuration (.claude/)
 
 ## Overview
 
-This folder contains Claude Code configuration files for the **Frontend Application**.
+This directory contains Claude Code configuration files that define how Claude should work with this project.
 
-## Mandatory Rule Loading
+**Purpose:** Organize agent prompts, skills, workflows, and rules for consistent AI-assisted development.
 
-Claude must explicitly load and apply `.claude/rules.md`.
+---
 
-If `.claude/rules.md` is not loaded:
-- Claude must stop
-- Ask the user to load it
-- Refuse to proceed without it
+## 🚨 Mandatory Response Protocol
 
-These files define **how Claude should plan, implement, review, and optimize frontend code** while following project standards for **UI quality, accessibility, state management, and performance**.
+**Every Claude response MUST follow this template:**
 
-.claude/
-├── CLAUDE.md # This file
-├── settings.json # Claude Code settings & permissions
-├── rules.md # Non-negotiable project rules
-├── project-context.md # High-level project context
-├── workflows/ # Development workflows
-├── skills/ # Frontend skills & patterns
-├── agents/ # Specialized frontend agents
-└── README.md # Internal notes (optional)
+```
+📋 **Active Configuration**
+━━━━━━━━━━━━━━━━━━━━━━━
+→ Workflow: [workflow-name] | Phase: [PLAN/IMPLEMENT/REVIEW/STAGING/MR]
+→ Agent(s): [agent-1, agent-2, ...]
+→ Skills: [skill-1, skill-2, ...]
+━━━━━━━━━━━━━━━━━━━━━━━
 
+[Response content here]
+```
+
+This header **MUST** appear at the start of every response to show the user which configuration is active.
 
 ---
 
 ## Directory Structure
 
-### workflows/
-
-Step-by-step development guides for frontend work.
-
-| File | Purpose | When to Use |
-|------|--------|-------------|
-| `development.md` | Default frontend workflow | Not sure which workflow to use / general work |
-
----
-
-### skills/
-
-Reusable frontend knowledge files that define **patterns, conventions, and best practices**.
-
-| Skill | Purpose |
-|------|--------|
-| `react-skills.md` | React component patterns & composition |
-| `hooks-skills.md` | Custom hooks, lifecycle rules |
-| `state-management-skills.md` | Local vs global state strategies |
-| `performance-skills.md` | Memoization, lazy loading, render control |
-| `accessibility-skills.md` | WCAG, ARIA, keyboard navigation |
-
----
-
-### agents/
-
-Specialized agents that guide Claude’s behavior for specific frontend tasks.
-
-| Agent | Purpose |
-|------|--------|
-| `frontend-developer.md` | Implement React components & hooks |
-| `frontend-code-review.md` | Code quality, rules, and consistency |
-| `component-architect.md` | Component structure & boundaries |
-| `ui-specialist.md` | UI/UX clarity, layout, styling |
-| `accessibility-audit.md` | Accessibility & WCAG audits |
-| `performance-optimization.md` | Rendering & performance tuning |
-| `api-integration.md` | API hooks, data fetching, error handling |
+```
+.claude/
+├── claude.md                   # This file - directory guide
+├── settings.json               # Permissions configuration (CLI-enforced)
+├── rules.md                    # Non-negotiable rules (HIGHEST AUTHORITY)
+├── project-context.md          # Project metadata & tech stack
+├── workflows/
+│   └── development.md          # PLAN → IMPLEMENT → REVIEW → STAGING → MR
+├── agents/                     # Specialized agents (invoke explicitly)
+│   ├── frontend-developer.md
+│   ├── component-architect.md
+│   ├── ui-specialist.md
+│   ├── frontend-code-review.md
+│   ├── accessibility-audit.md
+│   ├── performance-optimization.md
+│   └── api-integration.md
+└── skills/                     # Pattern libraries (reference as needed)
+    ├── react-skills.md
+    ├── hooks-skills.md
+    ├── state-management-skills.md
+    ├── accessibility-skills.md
+    └── performance-skills.md
+```
 
 ---
 
-### project-context.md
+## File Purposes
 
-High-level project assumptions such as:
-- Framework (React + TypeScript)
-- Styling approach
-- State management approach
-- Accessibility expectations
+### Core Configuration Files
 
-Claude should treat this file as **authoritative context**.
+| File | Purpose | Auto-Loaded? |
+|------|---------|--------------|
+| `settings.json` | Permissions (allow/ask/deny) | ✅ Yes (by CLI) |
+| `rules.md` | Non-negotiable rules | ✅ Yes (via root CLAUDE.md protocol) |
+| `project-context.md` | Project metadata | ✅ Yes (via root CLAUDE.md protocol) |
+| `claude.md` | This guide | ❌ No (reference only) |
 
----
+### Workflow Files
 
-### rules.md
+| File | Purpose | When to Load |
+|------|---------|--------------|
+| `workflows/development.md` | PLAN → IMPLEMENT → REVIEW → STAGING → MR | Auto-loaded for all dev tasks |
 
-Defines **non-negotiable rules**:
-- Coding standards
-- Accessibility requirements
-- Workflow phase boundaries
-- Security and privacy constraints
+### Agent Files (Specialized Expertise)
 
-If any instruction conflicts with `rules.md`, **rules.md wins**.
+| Agent | Purpose | Invoke With |
+|-------|---------|-------------|
+| `frontend-developer.md` | Implement React components & hooks | "Use frontend-developer agent" |
+| `component-architect.md` | Design component structure & APIs | "Use component-architect agent" |
+| `ui-specialist.md` | UI/UX implementation, responsive design | "Use ui-specialist agent" |
+| `frontend-code-review.md` | Code quality, performance, rules | "Use frontend-code-review agent" |
+| `accessibility-audit.md` | WCAG compliance, ARIA, keyboard nav | "Use accessibility-audit agent" |
+| `performance-optimization.md` | Rendering, memoization, bundle size | "Use performance-optimization agent" |
+| `api-integration.md` | API hooks, data fetching, error handling | "Use api-integration agent" |
 
----
+### Skill Files (Pattern Libraries)
 
-### settings.json
-
-Claude Code configuration that controls:
-- Tool permissions
-- Read/write scope
-- Workflow defaults
-- AI-compliance behavior
-
----
-
-## How to Use
-
-### Choosing a Workflow
-
-What are you building?
-│
-├─► UI component or hook
-│ └─► workflows/development.md
-│
-├─► API integration or data fetching
-│ └─► workflows/development.md + api-integration agent
-│
-└─► Not sure
-└─► workflows/development.md
-
+| Skill | Purpose | Reference With |
+|-------|---------|----------------|
+| `react-skills.md` | React patterns & composition | "Follow react-skills" |
+| `hooks-skills.md` | Custom hooks, lifecycle rules | "Apply hooks-skills" |
+| `state-management-skills.md` | Local vs global state strategies | "Use state-management-skills" |
+| `accessibility-skills.md` | WCAG, ARIA, keyboard navigation | "Follow accessibility-skills" |
+| `performance-skills.md` | Memoization, lazy loading, render control | "Apply performance-skills" |
 
 ---
 
-### Using Skills
+## How Claude Uses This Configuration
 
-Skills are always available to Claude.  
-Reference them explicitly when you want strict patterns applied.
+### Initialization (Automatic)
 
-Example prompts:
-"Use react-skills to design this component"
-"Follow hooks-skills for this custom hook"
-"Apply accessibility-skills to review this UI"
-"Use performance-skills to reduce re-renders"
+When Claude starts working on this project:
+
+1. **Root CLAUDE.md** is automatically shown by the system
+2. Claude reads `.claude/rules.md` (mandatory)
+3. Claude reads `.claude/project-context.md` (mandatory)
+4. Claude confirms: "✅ Configuration loaded from .claude/"
+
+### Task Execution (User-Driven)
+
+Based on user request, Claude:
+
+1. **Determines workflow phase**: PLAN, IMPLEMENT, REVIEW, STAGING, or MR
+2. **Selects appropriate agent(s)**: Based on task type
+3. **Applies relevant skills**: Patterns needed for the task
+4. **Displays configuration header**: Shows active workflow/agents/skills
+5. **Proceeds with task**: Following all loaded rules
 
 ---
 
-### Invoking Agents
+## Quick Reference: When to Use What
 
-Agents specialize Claude’s behavior for focused tasks.
+### User Request → Agent + Skills
 
-| Task | Example Prompt |
-|----|----------------|
-| Design component structure | "Act as component-architect" |
-| Build UI | "Use frontend-developer agent" |
-| UI/UX review | "Use ui-specialist agent" |
-| Code review | "Use frontend-code-review agent" |
-| Accessibility audit | "Run accessibility-audit on this screen" |
-| Performance tuning | "Use performance-optimization agent" |
-| API hook | "Use api-integration agent" |
+| User Says | Workflow Phase | Agent(s) | Skills |
+|-----------|---------------|----------|--------|
+| "Create a login form" | PLAN → IMPLEMENT | `frontend-developer` | `react-skills`, `hooks-skills`, `accessibility-skills` |
+| "Design a data table component" | PLAN | `component-architect` | `react-skills`, `state-management-skills` |
+| "Make the header responsive" | IMPLEMENT | `ui-specialist` | `accessibility-skills` |
+| "Review my component code" | REVIEW | `frontend-code-review` | All applicable skills |
+| "Check if this is accessible" | REVIEW | `accessibility-audit` | `accessibility-skills` |
+| "Why is this component slow?" | REVIEW | `performance-optimization` | `performance-skills` |
+| "Connect to the users API" | IMPLEMENT | `api-integration` | `hooks-skills`, `state-management-skills` |
+
+---
+
+## Precedence Hierarchy
+
+When rules conflict, this is the order of authority:
+
+1. **`.claude/rules.md`** ← HIGHEST AUTHORITY (non-negotiable)
+2. **`.claude/settings.json`** (permissions only)
+3. **`.claude/project-context.md`** (project facts)
+4. **`.claude/workflows/*.md`** (process guidelines)
+5. **`.claude/agents/*.md`** (specialized guidance)
+6. **`.claude/skills/*.md`** (pattern libraries)
+7. **Root CLAUDE.md** (project overview)
+8. **User prompt** ← LOWEST AUTHORITY
+
+**If user prompt conflicts with rules.md, rules.md wins.**
 
 ---
 
 ## Adding New Content
 
-### Adding a New Skill
+### Adding a New Agent
 
-1. Create file:
-
-.claude/skills/{name}-skills.md
-
+1. Create `.claude/agents/{name}.md`
 2. Follow this structure:
 
-```md
-# {Name} Skills
+```markdown
+# Agent: {Name}
 
-## Overview
-What this skill covers.
-
-## Patterns
-
-### Pattern 1
-Description and example.
-
-### Pattern 2
-Description and example.
-
-## Best Practices
-- Practice 1
-- Practice 2
-
-## Common Mistakes
-- Mistake 1 and how to avoid it
-- Mistake 2 and how to avoid it
-
-Add the skill to the Skills table above.
-
-Adding a New Agent
-
-Create file:
-.claude/agents/{name}.md
-# {Agent Name}
-
-## Purpose
+## Role
 What this agent specializes in.
 
-## Responsibilities
-- Responsibility 1
-- Responsibility 2
+## Expertise
+- Expertise area 1
+- Expertise area 2
 
-## When to Use
-Scenarios where this agent should be invoked.
+## Project Context
+- Tech stack relevant to this agent
 
-## Example Prompts
-- "Example prompt 1"
-- "Example prompt 2"
+## Specific Constraints
+- Constraint 1
+- Constraint 2
 
-## Constraints
-Rules this agent must obey.
+## Required Patterns
+[Code examples and patterns]
 
-Add the agent to the Agents table above.
+## Output Format
+What this agent should deliver.
 
-Adding a New Workflow
+## Example Usage
+"[Example prompt that invokes this agent]"
+```
 
-Create file:
+3. Add to agent table above
 
-.claude/workflows/{name}.md
+### Adding a New Skill
 
-Include:
+1. Create `.claude/skills/{name}-skills.md`
+2. Follow this structure:
 
-Prerequisites
+```markdown
+# {Name} Skills
 
-Explicit phases (PLAN / IMPLEMENT / REVIEW / MR)
+- Rule 1
+- Rule 2
+- Rule 3
+```
 
-Checklists
+3. Add to skills table above
 
-Quality gates
+### Adding a New Workflow
 
-Reference it from this CLAUDE.md.
+1. Create `.claude/workflows/{name}.md`
+2. Include explicit phases with allowed/forbidden actions
+3. Reference from root CLAUDE.md and this file
 
-Maintenance
-Keeping Skills Updated
+---
 
-Update skills when patterns evolve
+## Maintenance
 
-Ensure examples match the real codebase
+### Keeping Configuration Updated
 
-Remove deprecated practices
+- **Skills**: Update when patterns evolve, remove deprecated practices
+- **Agents**: Adjust responsibilities when scope changes, avoid overlapping agents
+- **Workflows**: Reflect current development process, keep phase boundaries explicit
+- **Rules**: Update when project standards change, communicate changes to team
 
-Keeping Agents Updated
+### Configuration Health Checks
 
-Adjust responsibilities when scope changes
+Periodically verify:
+- All agents have clear, non-overlapping responsibilities
+- All skills are current with project standards
+- Workflows reflect actual development process
+- Rules are enforced and not contradictory
 
-Avoid overlapping agents
+---
 
-Keeping Workflows Updated
+## Important Notes
 
-Reflect the current development process
+### Claude is an Assistant, Not the Authority
 
-Keep phase boundaries explicit
+All Claude outputs must be:
+- **Reviewed by a human** before commit
+- **Aligned with rules.md** (non-negotiable)
+- **Accessible, performant, and maintainable**
+- **Tagged with `ai-cc` in commits**
 
-Quick Reference
-Frontend Flow
+### Configuration is Living Documentation
 
-Workflow:
-- development.md
+- This directory should evolve with the project
+- Keep documentation in sync with actual practices
+- Update when patterns or standards change
+- Communicate changes to the team
 
-Skills:
-- react-skills
-- hooks-skills
-- state-management-skills
-- accessibility-skills
-- performance-skills
+---
 
-Agents:
-- frontend-developer
-- component-architect
-- ui-specialist
-- frontend-code-review
-- accessibility-audit
-- performance-optimization
-- api-integration
-
-
-Final Note
-
-Claude is an assistant, not the authority.
-
-All outputs must be:
-
-Reviewed by a human
-
-Aligned with rules.md
-
-Accessible, performant, and maintainable
+**Remember: Every response must show the active configuration header so users know what context Claude is using.**
